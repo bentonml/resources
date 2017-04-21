@@ -20,7 +20,7 @@ This is where I set global options for the code chunks in the remainder of the n
 Quick notes:
 
   1. The figure heights and widths are specified in inches.
-  2. Figures generate in this document are saved in all the *dev()* formats in a directory named *notebookName_files*.
+  2. Figures generate in this document are saved in all the *dev()* formats in a directory named using the `fig.path` option.
   3. You can override any of these options for an individual code chunk-- see Imports and Functions section for an example.
   
 ```{r global_options}
