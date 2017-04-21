@@ -1,0 +1,61 @@
+---
+title: "R Notebook Template"
+output: 
+html_document:
+    theme: yeti      # other theme options available; i also like cosmo
+    toc: yes         # auto-generate table of contents
+    toc_float: yes   # allow table of contents to scroll with you
+mode: self_contained # by default; html will have no external dependencies
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code (or write LaTeX equations) within the notebook, the results appear beneath the code. 
+
+When you save the notebook, an HTML file with the code and output will be saved too (click *Preview* or press *Cmd+Shift+K* to preview the HTML file).
+
+A more detailed tutorial for generating HTML files via R Markdown is available [here](http://rmarkdown.rstudio.com/html_document_format.html) from the people at RStudio!
+
+## Global Parameters
+This is where I set global options for the code chunks in the remainder of the notebook.
+
+Quick notes:
+
+  1. The figure heights and widths are specified in inches.
+  2. Figures generate in this document are saved in all the *dev()* formats in a directory named *notebookName_files*.
+  3. You can override any of these options for an individual code chunk-- see Imports and Functions section for an example.
+  
+```{r global_options}
+knitr::opts_chunk$set(dev = c('pdf', 'png'), fig.path='figures/', fig.width=7, fig.height=5, dpi=300,
+                      echo=FALSE, warning=FALSE, message=FALSE, cache=FALSE)
+```
+
+## Imports and Functions
+I put all library imports, constants (e.g. colorschemes, themes), and functions in this section. You can easily collapse the code chunk in the RStudio editor and remove the `echo=TRUE` to prevent printing this code to the final document.
+
+```{r setup, echo=TRUE}
+# put useful libraries or functions here
+library(ggplot2)
+library(RColorBrewer)
+library(knitr)
+```
+
+## Visualization
+This is a sample code chunk and resulting plot.
+
+```{r sample_plot, echo=TRUE}
+plot(cars)
+```
+
+## Final Tips & Tricks
+If the markdown isn't rendering like you expect, try adding whitespace. For example, the numbered list in the first section doesn't render correctly unless surrounded by a blank line on either side.
+
+Inline code can be rendered like `this`. Adding 'r' will run the code segment: `length(cars)` = `r length(cars)`.
+
+R Markdown supports LaTeX equation syntax. 
+$$a^2 + b^2 = c^2$$ 
+
+You can import existing images into the document with the following:
+```
+![optional caption](figures/img.png)
+```
+
+Additional formatting basics outlined [here](http://rmarkdown.rstudio.com/authoring_basics.html).
