@@ -30,6 +30,8 @@ fi
 
 }
 
+
+# parse command line arguments
 while getopts "hb:i:" args; do
     case $args in
         i ) input_bed=$OPTARG
@@ -46,7 +48,6 @@ while getopts "hb:i:" args; do
             ;;
     esac
 done
-
 
 # use bedtools to generate randomly shuffled file
 if [ ! "$input_bed" ]; then
