@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+# Mary Lauren Benton, 2017
+#
+# Generate randomly shuffled BED file from input BED; exclude ENCODE blacklist by default.
+
+
+blacklist="/dors/capra_lab/data/ENCODE/hg19_encode_blacklist_gap.bed"
+chrom_sizes="/dors/capra_lab/data/dna/hg19_trim.chrom.sizes"
+
+
+function usage() {
+
+echo ""
+echo "usage: ./generate_random_bed [ -h ] [ -b BLACKLIST ] -i INPUT_FILE"
+echo ""
+echo "options:"
+echo "-h    print this usage message"
+echo "-b    supply custom blacklist file in BED format"
+echo "-i    input file in BED format"
+
+}
+
+function check_file() {
+
+if [ ! -f "$1" ]; then
+    echo "error: problem with $1 -- check that input file exists."
+    exit 1
+fi
+
+}
+
+
+# parse command line arguments
+while getopts "hb:i:" args; do
+    case $args in
+        i ) input_bed=$OPTARG
+            check_file $input_bed
+            ;;
+        b ) blacklist=$OPTARG
+            check_file $blacklist
+            ;;
+        h ) usage
+            exit 1
+            ;;
+        * ) usage
+            exit 1
+            ;;
+    esac
+done
+
+# use bedtools to generate randomly shuffled file
+if [ ! "$input_bed" ]; then
+    echo "error: need to provide input BED file with the -i option."
+    usage
+    exit 1
+else
+    shuffleBed -excl $blacklist -i $input_bed -g $chrom_sizes -chrom -noOverlapping
+fi
+
