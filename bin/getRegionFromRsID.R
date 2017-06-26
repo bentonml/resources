@@ -1,4 +1,7 @@
-# works with R 3.2.2+
+# Mary Lauren Benton, 2017
+#
+# writes BED file from file of rsIDs
+# compatible with R 3.2.2+
 
 # load required packages
 if(!require(optparse)) { install.packages("optparse", repos="http://cran.rstudio.com/"); library(optparse) }
