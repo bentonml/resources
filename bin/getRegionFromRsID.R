@@ -5,7 +5,7 @@
 
 # load required packages
 if(!require(optparse)) { install.packages("optparse", repos="http://cran.rstudio.com/"); library(optparse) }
-if(!require(biomaRt)) { source("http://bioconductor.org/biocLite.R"); biocLite("biomaRt") }
+if(!require(biomaRt))  { source("http://bioconductor.org/biocLite.R"); biocLite("biomaRt") }
 
 ### handle command line options
 option_list <- list(
@@ -25,7 +25,7 @@ if (is.null(opt$file)){
 ###
 
 snp_ids <- list(read.table(file = opt$file, header = FALSE, stringsAsFactors = FALSE)$V1)
-snp_attributes <- c("chr_name", "chrom_start", "chrom_end", "refsnp_id")  # ask for chr number, start coordinate, and rsID
+snp_attributes <- c("chr_name", "chrom_start", "chrom_end", "refsnp_id")
 
 # connect to the hg19 ensembl database
 snp_mart <- useMart("ENSEMBL_MART_SNP", host="grch37.ensembl.org", dataset="hsapiens_snp")
