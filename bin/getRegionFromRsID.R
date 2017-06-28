@@ -23,12 +23,13 @@ if (is.null(opt$file)){
 
 snp_ids <- list(read.table(file = opt$file, header = FALSE, stringsAsFactors = FALSE)$V1)
 snp_attributes <- c("chr_name", "chrom_start", "chrom_end", "refsnp_id")  # ask for chr number, start coordinate, and rsID
+norm_chr <- c(1:22, "X", "Y", "M")  # only retrieve normal chromosomes
 
 # connect to the hg19 ensembl database
 snp_mart <- useMart("ENSEMBL_MART_SNP", host="grch37.ensembl.org", dataset="hsapiens_snp")
 
 # retrieve requested attributes from database
-snp_locations <- getBM(attributes=snp_attributes, filters="snp_filter", values=snp_ids, mart=snp_mart)
+snp_locations <- getBM(attributes=snp_attributes, filters=c("snp_filter", "chr_name"), values=list(snp_filter = snp_ids, chr_name = norm_chr), mart=snp_mart)
 
 # format results returned from function
 snp_locations$chr_name <- paste("chr", snp_locations$chr_name, sep = "")
@@ -36,4 +37,3 @@ snp_locations$chrom_start <- snp_locations$chrom_start - 1  # because https://ww
 
 # save results to BED file
 write.table(snp_locations, file = opt$out, quote = FALSE, row.names = FALSE, col.names = FALSE, sep = "\t")
-
