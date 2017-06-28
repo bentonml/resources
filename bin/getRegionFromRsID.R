@@ -2,6 +2,7 @@
 #
 # writes BED file from file of rsIDs
 # compatible with R 3.2.2+
+# if no result found, nothing written in output file for that rsID
 
 # load required packages
 if(!require(optparse)) { install.packages("optparse", repos="http://cran.rstudio.com/"); library(optparse) }
