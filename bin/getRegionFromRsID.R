@@ -1,8 +1,11 @@
-# works with R 3.2.2+
+# Mary Lauren Benton, 2017
+#
+# writes BED file from file of rsIDs
+# compatible with R 3.2.2+
 
 # load required packages
 if(!require(optparse)) { install.packages("optparse", repos="http://cran.rstudio.com/"); library(optparse) }
-if(!require(biomaRt)) { source("http://bioconductor.org/biocLite.R"); biocLite("biomaRt") }
+if(!require(biomaRt))  { source("http://bioconductor.org/biocLite.R"); biocLite("biomaRt") }
 
 ### handle command line options
 option_list <- list(
@@ -37,3 +40,4 @@ snp_locations$chrom_start <- snp_locations$chrom_start - 1  # because https://ww
 
 # save results to BED file
 write.table(snp_locations, file = opt$out, quote = FALSE, row.names = FALSE, col.names = FALSE, sep = "\t")
+
