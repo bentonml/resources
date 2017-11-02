@@ -8,18 +8,62 @@
 #               /dors/capra_lab/bentonml/data/blacklist_gap_[species].bed
 #
 
-import sys
 import os
-import subprocess
+import sys
 import argparse
 import datetime
+import subprocess
 import numpy as np
 from functools import partial
 from multiprocessing import Pool 
 
 
-def loadConstants():
-    return "/dors/capra_lab/bentonml/pavlicev_atacseq_enrichment/data/blacklist_gap_mm10.bed", "/dors/capra_lab/data/dna/mm10_trim.chrom.sizes"
+###
+#   arguments
+###
+arg_parser = argparse.ArgumentParser(description="Calculate enrichment between bed files.")
+
+arg_parser.add_argument("annotation_file", help='annotation bed file')
+
+arg_parser.add_argument("test_file", help='test bed file (regions of interest)')
+
+arg_parser.add_argument("-i", "--iters", type=int, default=100,
+                        help='number of simulation iterations; default=100')
+
+arg_parser.add_argument("-s", type=str, default='hg19', choices=['hg19', 'hg38', 'mm10'],
+                        help='species and assembly; default=hg19')
+
+arg_parser.add_argument("-n", "--num_threads", type=int,
+                        help='number of threads; default=SLURM_CPUS_PER_TASK or 1')
+
+arg_parser.add_argument("--elem_wise", action='store_true', default=False,
+                        help='perform element-wise overlaps; default=False')
+
+args = arg_parser.parse_args()
+
+# save parameters
+ANNOTATION_FILENAME = args.annotation_file
+TEST_FILENAME = args.test_file
+ITERATIONS = args.iters
+SPECIES = args.species
+ELEMENT = args.elem_wise
+
+# calculate the number of threads
+if args.num_threads:
+    num_threads = args.num_threads
+
+else:
+    num_threads = int(os.getenv('SLURM_CPUS_PER_TASK', 1))
+
+
+###
+#   functions
+###
+def loadConstants(species):
+    return {'hg19': ("/dors/capra_lab/bentonml/data/hg19_blacklist_gap.bed", "/dors/capra_lab/data/dna/hg19_trim.chrom.sizes"),
+            'hg38': ("/dors/capra_lab/bentonml/data/hg38_blacklist_gap.bed", "/dors/capra_lab/data/dna/hg38_trim.chrom.sizes"),
+            'mm10': ("/dors/capra_lab/bentonml/data/mm10_blacklist_gap.bed", "/dors/capra_lab/data/dna/mm10_trim.chrom.sizes")
+            }[species]
 
 
 def calculateObserved(annotation, test, elementwise):
@@ -37,8 +81,8 @@ def calculateObserved(annotation, test, elementwise):
     return obs_sum
 
 
-def calculateExpected(annotation, test, elementwise, iters):
-    BLACKLIST, CHROM_SZ = loadConstants()
+def calculateExpected(annotation, test, elementwise, iters, species):
+    BLACKLIST, CHROM_SZ = loadConstants(species)
     exp_sum = 0
 
     rand_file = subprocess.Popen(['shuffleBed', '-excl', BLACKLIST, '-i', annotation, '-g', CHROM_SZ, '-chrom', '-noOverlapping'], stdout=subprocess.PIPE)
@@ -66,42 +110,20 @@ def calculateEmpiricalP(obs, exp_sum_list):
     return "%d\t%.3f\t%.3f\t%.3f" % (obs, exp, fold_change, p_val)
 
 
-def usage():
-    print "usage: python calculate_enrichment.py [annotation file] [test file] [iterations] [element-wise T/F]"
-
-
+###
+#   main
+###
 def main(argv):
-    # check only for correct number of parameters
-    if len(argv) < 3 or len(argv) > 5:
-        usage()
-        sys.exit(1)
-    
-    # save parameters
-    ANNOTATION_FILENAME= sys.argv[1]
-    TEST_FILENAME = sys.argv[2]
-    ITERATIONS = int(sys.argv[3])
-
-    if sys.argv[4] == "T":
-        ELEMENT = True
-    else:
-        ELEMENT = False
-
-    # calculate the number of threads
-    if len(argv) == 5:
-        num_threads = int(sys.argv[5])
-    else:
-        num_threads = int(os.environ['SLURM_CPUS_PER_TASK'])
-
     # print header
-    print('{:s} {}'.format(' '.join(sys.argv), str(datetime.datetime.now())[:20]))
+    print('{:s} {:s}'.format(' '.join(sys.argv), str(datetime.datetime.now())[:20]))
     print('Observed\tExpected\tFoldChange\tp-value')
-    
+
     # run initial intersection and save
     obs_sum = calculateObserved(ANNOTATION_FILENAME, TEST_FILENAME, ELEMENT)
 
     # create pool and run simulations in parallel
     pool = Pool(num_threads)
-    partial_calcExp = partial(calculateExpected, ANNOTATION_FILENAME, TEST_FILENAME, ELEMENT)
+    partial_calcExp = partial(calculateExpected, ANNOTATION_FILENAME, TEST_FILENAME, ELEMENT, SPECIES)
     exp_sum_list = pool.map(partial_calcExp, (i for i in range(ITERATIONS)))
     
     # wait for results to finish before calculating p-value
@@ -109,7 +131,7 @@ def main(argv):
     pool.join()
 
     # calculate empirical p value 
-    print calculateEmpiricalP(obs_sum, exp_sum_list)
+    print(calculateEmpiricalP(obs_sum, exp_sum_list))
 
 
 if __name__ == "__main__":
