@@ -5,7 +5,7 @@
 # Depends on:
 #               BEDtools v2.23.0-20
 #               /dors/capra_lab/data/dna/[species]_trim.chrom.sizes
-#               /dors/capra_lab/bentonml/data/blacklist_gap_[species].bed
+#               /dors/capra_lab/bentonml/data/[species]_blacklist_gap.bed
 #
 
 import os
