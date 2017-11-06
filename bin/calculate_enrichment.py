@@ -9,7 +9,7 @@
 #
 
 import os
-import sys
+import sys, traceback
 import argparse
 import datetime
 import subprocess
@@ -30,7 +30,7 @@ arg_parser.add_argument("test_file", help='test bed file (regions of interest)')
 arg_parser.add_argument("-i", "--iters", type=int, default=100,
                         help='number of simulation iterations; default=100')
 
-arg_parser.add_argument("-s", type=str, default='hg19', choices=['hg19', 'hg38', 'mm10'],
+arg_parser.add_argument("-s", "--species", type=str, default='hg19', choices=['hg19', 'hg38', 'mm10'],
                         help='species and assembly; default=hg19')
 
 arg_parser.add_argument("-n", "--num_threads", type=int,
@@ -70,10 +70,10 @@ def calculateObserved(annotation, test, elementwise):
     obs_sum = 0
 
     if elementwise:
-        obs_intersect = subprocess.check_output(['intersectBed', '-u', '-a', annotation, '-b', test])
+        obs_intersect = subprocess.check_output(['intersectBed',  '-u', '-a', annotation, '-b', test], universal_newlines=True)
         obs_sum = len(obs_intersect.splitlines())
     else:
-        obs_intersect = subprocess.check_output(['intersectBed', '-wo', '-a', annotation, '-b', test])
+        obs_intersect = subprocess.check_output(['intersectBed', '-wo', '-a', annotation, '-b', test], universal_newlines=True)
 
         for line in obs_intersect.splitlines():
             obs_sum += int(line.split('\t')[-1])
@@ -81,18 +81,17 @@ def calculateObserved(annotation, test, elementwise):
     return obs_sum
 
 
-def calculateExpected(annotation, test, elementwise, iters, species):
+def calculateExpected(annotation, test, elementwise, species, iters):
     BLACKLIST, CHROM_SZ = loadConstants(species)
     exp_sum = 0
 
     rand_file = subprocess.Popen(['shuffleBed', '-excl', BLACKLIST, '-i', annotation, '-g', CHROM_SZ, '-chrom', '-noOverlapping'], stdout=subprocess.PIPE)
 
     if elementwise:
-        exp_intersect = subprocess.check_output(['intersectBed', '-u', '-a', 'stdin', '-b', test], stdin=rand_file.stdout)
+        exp_intersect = subprocess.check_output(['intersectBed',  '-u', '-a', 'stdin', '-b', test], stdin=rand_file.stdout, universal_newlines=True)
         exp_sum = len(exp_intersect.splitlines())
     else:
-        exp_intersect = subprocess.check_output(['intersectBed', '-wo', '-a', 'stdin', '-b', test], stdin=rand_file.stdout)
-
+        exp_intersect = subprocess.check_output(['intersectBed', '-wo', '-a', 'stdin', '-b', test], stdin=rand_file.stdout,  universal_newlines=True)
         for line in exp_intersect.splitlines():
             exp_sum += int(line.split('\t')[-1])
 
@@ -124,8 +123,8 @@ def main(argv):
     # create pool and run simulations in parallel
     pool = Pool(num_threads)
     partial_calcExp = partial(calculateExpected, ANNOTATION_FILENAME, TEST_FILENAME, ELEMENT, SPECIES)
-    exp_sum_list = pool.map(partial_calcExp, (i for i in range(ITERATIONS)))
-    
+    exp_sum_list = pool.map(partial_calcExp, [i for i in range(ITERATIONS)])
+
     # wait for results to finish before calculating p-value
     pool.close()
     pool.join()
