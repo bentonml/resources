@@ -23,9 +23,9 @@ from multiprocessing import Pool
 ###
 arg_parser = argparse.ArgumentParser(description="Calculate enrichment between bed files.")
 
-arg_parser.add_argument("annotation_file", help='annotation bed file')
+arg_parser.add_argument("region_file_1", help='bed file 1 (shuffled)')
 
-arg_parser.add_argument("test_file", help='test bed file (regions of interest)')
+arg_parser.add_argument("region_file_2", help='bed file 2 (not shuffled)')
 
 arg_parser.add_argument("-i", "--iters", type=int, default=100,
                         help='number of simulation iterations; default=100')
@@ -42,8 +42,8 @@ arg_parser.add_argument("--elem_wise", action='store_true', default=False,
 args = arg_parser.parse_args()
 
 # save parameters
-ANNOTATION_FILENAME = args.annotation_file
-TEST_FILENAME = args.test_file
+ANNOTATION_FILENAME = args.region_file_1
+TEST_FILENAME = args.region_file_2
 ITERATIONS = args.iters
 SPECIES = args.species
 ELEMENT = args.elem_wise
