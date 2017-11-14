@@ -36,6 +36,9 @@ arg_parser.add_argument("-s", "--species", type=str, default='hg19', choices=['h
 arg_parser.add_argument("-n", "--num_threads", type=int,
                         help='number of threads; default=SLURM_CPUS_PER_TASK or 1')
 
+arg_parser.add_argument("--print_counts_to", type=str, default=None,
+                        help="print expected counts to file")
+
 arg_parser.add_argument("--elem_wise", action='store_true', default=False,
                         help='perform element-wise overlaps; default=False')
 
@@ -44,6 +47,7 @@ args = arg_parser.parse_args()
 # save parameters
 ANNOTATION_FILENAME = args.region_file_1
 TEST_FILENAME = args.region_file_2
+COUNT_FILENAME = args.print_counts_to
 ITERATIONS = args.iters
 SPECIES = args.species
 ELEMENT = args.elem_wise
@@ -51,7 +55,6 @@ ELEMENT = args.elem_wise
 # calculate the number of threads
 if args.num_threads:
     num_threads = args.num_threads
-
 else:
     num_threads = int(os.getenv('SLURM_CPUS_PER_TASK', 1))
 
@@ -100,13 +103,14 @@ def calculateExpected(annotation, test, elementwise, species, iters):
 
 def calculateEmpiricalP(obs, exp_sum_list):
     mu = np.mean(exp_sum_list)
+    sigma = np.std(exp_sum_list)
     dist_from_mu = [exp - mu for exp in exp_sum_list]
     p_sum = sum(1 for exp_dist in dist_from_mu if abs(exp_dist) >= abs(obs - mu))
 
     fold_change = (obs + 1.0) / (mu + 1.0)
     p_val = (p_sum + 1.0) / (len(exp_sum_list) + 1.0) 
 
-    return "%d\t%.3f\t%.3f\t%.3f" % (obs, exp, fold_change, p_val)
+    return "%d\t%.3f\t%.3f\t%.3f\t%.3f" % (obs, mu, sigma, fold_change, p_val)
 
 
 ###
@@ -115,7 +119,7 @@ def calculateEmpiricalP(obs, exp_sum_list):
 def main(argv):
     # print header
     print('{:s} {:s}'.format(' '.join(sys.argv), str(datetime.datetime.now())[:20]))
-    print('Observed\tExpected\tFoldChange\tp-value')
+    print('Observed\tExpected\tStdDev\tFoldChange\tp-value')
 
     # run initial intersection and save
     obs_sum = calculateObserved(ANNOTATION_FILENAME, TEST_FILENAME, ELEMENT)
@@ -131,6 +135,10 @@ def main(argv):
 
     # calculate empirical p value 
     print(calculateEmpiricalP(obs_sum, exp_sum_list))
+
+    if COUNT_FILENAME is not None:
+        with open(COUNT_FILENAME, "w") as count_file:
+            count_file.write('{}\n{}\n'.format(obs_sum, '\t'.join(map(str, exp_sum_list))))
 
 
 if __name__ == "__main__":
