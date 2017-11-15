@@ -34,12 +34,8 @@ def read_counts(filename):
     with open(filename, 'r') as infile:
         obs = int(infile.readline().strip())
 
-        # expects data in counts format: [ obs ]
-        #                                [ exp ]
-        #                                [ ... ]
-        exp_list = []
-        for exp in infile:
-            exp_list.append(exp.strip())
+        # expects data in counts format: [ obs ] [ exp \t exp \t ... ]
+        exp_list = infile.readline().strip().split('\t')
 
     return obs, np.array(exp_list, dtype=int)
 
@@ -63,7 +59,7 @@ def main(argv):
     fc_list_b = calculate_fc_dist(obs_b, exp_list_b)
 
     result = stats.ttest_ind(fc_list_a, fc_list_b, equal_var=False)
-    print('{:.3f}\t{:.3f}'.format(result.statistic, result.pvalue))
+    print('{:.3f}\t{:.3e}'.format(result.statistic, result.pvalue))
 
 
 if __name__ == "__main__":
