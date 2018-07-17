@@ -7,9 +7,9 @@
 # relative_jaccard = jaccard / max_jaccard
 # where: jaccard = |intersect| / ( |a| + |b| - |intersect| )
 #        max_jaccard = min( |a|, |b| ) / max( |a|, |b| )
-# 
-# pass in the names of 2 bed files & optional argument to specify number of significant digits 
-# 
+#
+# pass in the names of 2 bed files & optional argument to specify number of significant digits
+#
 
 import sys
 import argparse
@@ -17,7 +17,7 @@ import pybedtools
 
 
 ###
-#   arguments
+#  arguments
 ###
 arg_parser = argparse.ArgumentParser(description="Calculate Jaccard and relative Jaccard similarity between bed files.")
 
@@ -34,7 +34,7 @@ DECIMAL = args.decimal
 
 
 ###
-#   main
+#  main
 ###
 def main(argv):
     # create bedtools objects
