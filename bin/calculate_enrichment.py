@@ -1,21 +1,24 @@
 #!/bin/python
+###
+#   name    | mary lauren benton
+#   created | 2017
+#   updated | 2018.10.09
+#           | 2018.10.11
 #
-# Mary Lauren Benton, 2017
-#
-# Depends on:
-#               BEDtools v2.23.0-20
-#               /dors/capra_lab/data/dna/[species]_trim.chrom.sizes
-#               /dors/capra_lab/bentonml/data/[species]_blacklist_gap.bed
-#
+#   depends on:
+#       BEDtools v2.23.0-20
+#       /dors/capra_lab/data/dna/[species]_trim.chrom.sizes
+#       /dors/capra_lab/users/bentonml/data/[species]_blacklist_gap.bed
+###
 
 import os
 import sys, traceback
 import argparse
 import datetime
-import subprocess
 import numpy as np
 from functools import partial
-from multiprocessing import Pool 
+from multiprocessing import Pool
+from pybedtools import BedTool
 
 
 ###
@@ -63,9 +66,9 @@ else:
 #   functions
 ###
 def loadConstants(species):
-    return {'hg19': ("/dors/capra_lab/bentonml/data/hg19_blacklist_gap.bed", "/dors/capra_lab/data/dna/hg19_trim.chrom.sizes"),
-            'hg38': ("/dors/capra_lab/bentonml/data/hg38_blacklist_gap.bed", "/dors/capra_lab/data/dna/hg38_trim.chrom.sizes"),
-            'mm10': ("/dors/capra_lab/bentonml/data/mm10_blacklist_gap.bed", "/dors/capra_lab/data/dna/mm10_trim.chrom.sizes")
+    return {'hg19': ("/dors/capra_lab/users/bentonml/data/hg19_blacklist_gap.bed", "/dors/capra_lab/data_clean/dna/human/hg19/hg19_trim.chrom.sizes"),
+            'hg38': ("/dors/capra_lab/users/bentonml/data/hg38_blacklist_gap.bed", "/dors/capra_lab/data_clean/dna/human/hg38/hg38_trim.chrom.sizes"),
+            'mm10': ("/dors/capra_lab/users/bentonml/data/mm10_blacklist_gap.bed", "/dors/capra_lab/data_clean/dna/mouse/mm10/mm10_trim.chrom.sizes")
             }[species]
 
 
@@ -73,13 +76,11 @@ def calculateObserved(annotation, test, elementwise):
     obs_sum = 0
 
     if elementwise:
-        obs_intersect = subprocess.check_output(['intersectBed',  '-u', '-a', annotation, '-b', test], universal_newlines=True)
-        obs_sum = len(obs_intersect.splitlines())
+        obs_sum = annotation.intersect(test, u=True).count()
     else:
-        obs_intersect = subprocess.check_output(['intersectBed', '-wo', '-a', annotation, '-b', test], universal_newlines=True)
-
-        for line in obs_intersect.splitlines():
-            obs_sum += int(line.split('\t')[-1])
+        obs_intersect = annotation.intersect(test, wo=True)
+        for line in obs_intersect:
+            obs_sum += int(line[-1])
 
     return obs_sum
 
@@ -88,15 +89,14 @@ def calculateExpected(annotation, test, elementwise, species, iters):
     BLACKLIST, CHROM_SZ = loadConstants(species)
     exp_sum = 0
 
-    rand_file = subprocess.Popen(['shuffleBed', '-excl', BLACKLIST, '-i', annotation, '-g', CHROM_SZ, '-chrom', '-noOverlapping'], stdout=subprocess.PIPE)
+    rand_file = annotation.shuffle(genome='hg19', excl=BLACKLIST, chrom=True, noOverlapping=True)
 
     if elementwise:
-        exp_intersect = subprocess.check_output(['intersectBed',  '-u', '-a', 'stdin', '-b', test], stdin=rand_file.stdout, universal_newlines=True)
-        exp_sum = len(exp_intersect.splitlines())
+        exp_sum = rand_file.intersect(test, u=True).count()
     else:
-        exp_intersect = subprocess.check_output(['intersectBed', '-wo', '-a', 'stdin', '-b', test], stdin=rand_file.stdout,  universal_newlines=True)
-        for line in exp_intersect.splitlines():
-            exp_sum += int(line.split('\t')[-1])
+        exp_intersect = rand_file.intersect(test, wo=True)
+        for line in exp_intersect:
+            exp_sum += int(line[-1])
 
     return exp_sum
 
@@ -108,7 +108,7 @@ def calculateEmpiricalP(obs, exp_sum_list):
     p_sum = sum(1 for exp_dist in dist_from_mu if abs(exp_dist) >= abs(obs - mu))
 
     fold_change = (obs + 1.0) / (mu + 1.0)
-    p_val = (p_sum + 1.0) / (len(exp_sum_list) + 1.0) 
+    p_val = (p_sum + 1.0) / (len(exp_sum_list) + 1.0)
 
     return "%d\t%.3f\t%.3f\t%.3f\t%.3f" % (obs, mu, sigma, fold_change, p_val)
 
@@ -118,7 +118,7 @@ def calculateEmpiricalP(obs, exp_sum_list):
 ###
 def main(argv):
     # print header
-    print('{:s} {:s}'.format(' '.join(sys.argv), str(datetime.datetime.now())[:20]))
+    print('python {:s} {:s}'.format(' '.join(sys.argv), str(datetime.datetime.now())[:20]))
     print('Observed\tExpected\tStdDev\tFoldChange\tp-value')
 
     # run initial intersection and save
@@ -133,7 +133,7 @@ def main(argv):
     pool.close()
     pool.join()
 
-    # calculate empirical p value 
+    # calculate empirical p value
     print(calculateEmpiricalP(obs_sum, exp_sum_list))
 
     if COUNT_FILENAME is not None:
