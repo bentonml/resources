@@ -1,0 +1,9 @@
+# mary lauren benton | 2015
+# .path
+
+# access capra lab utilities
+export PATH="/dors/capra_lab/bin/:$PATH"
+
+# access GAT (installed via "pip install x --user")
+export PATH="/home/bentonml/.local/bin/:$PATH"
+

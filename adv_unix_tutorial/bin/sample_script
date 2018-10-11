@@ -1,0 +1,78 @@
+#!/bin/bash
+# mary lauren benton | 2018
+#
+# this will demonstrate some basics in bash scripting 
+
+###
+#  command line parameters
+###
+# reference for if statement options: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
+if [ "$#" -gt 0 ]; then
+    echo "$# command parameters were provided"
+    
+    # bash will expand all of the parameters from $@
+    # note that loops (and if statements) can be performed in one line also
+    for param in "$@"; do echo $param; done
+fi
+
+
+###
+#  command substitution & variable expansion (part I)
+###
+# we can run commands like this
+pwd
+
+# save the output to a variable; both options work
+var1=`pwd`
+var2=$(pwd)
+
+echo $var1; echo $var2  # print each variable separately
+echo "$var1 == $var2"   # print the output with ""; variables expanded
+echo '$var1 ==  $var2'  # single quotes won't expand variables
+echo ${var1}/script     # this lets us add text to the end and keep the variable var1
+
+
+###
+#  if statements & variable expansion (part II)
+###
+
+test_str=""  # variable is empty
+
+# not great... because without the "" around $test_str the variable is not expanded
+if [ -n $test_str ]; then  # -n tests if the argument is not empty
+    echo "not the empty string!"
+fi
+
+# better -- the double quotes expand the variable
+if [ -n "$test_str" ]; then
+    echo "not the empty string!"
+else
+    echo "is the empty string!"  # could also add elif for more conditions
+fi
+
+
+###
+#  loops
+###
+
+# while
+idx=1
+while [ $idx -le 10 ]  # condition for while loop
+do
+    echo $idx
+    ((idx++))  # how to increment counter
+done
+
+
+# for
+for i in {1..10} # use brace expansion to loop through ranges in loops
+do
+    echo $i
+done  
+
+echo {a..z}      # or use it with characters
+echo {1..10..2}  # and change the step size 
+
+colors='red blue green purple orange'   # can loop through variables, etc. too
+for c in $colors; do echo $c; done
+

@@ -1,0 +1,201 @@
+#chrom  start   end p-value rsid    phenotype   sample_size ancestry    date    study_accession 
+chr13    93286453	93286454	4E-6	rs11839514-G	Visceral fat	10557	European	2012-05-10	GCST001525
+chr12    26290097	26290098	4E-9	rs4963975-A	Waist circumference adjusted for body mass index	6573;7713;146049;3975;1773;37487	African American or Afro-Caribbean;South Asian;European;African American or Afro-Caribbean;East Asian;European	2017-04-27	GCST004562
+chr10    2382362	2382363	9E-6	rs12571964-A	Obesity-related traits	815	Hispanic or Latin American	2012-12-04	GCST001762
+chr2    52284656	52284657	1E-6	rs17042688-?	Estradiol plasma levels (breast cancer)	700;50;17;5	European;African unspecified;Asian unspecified;Native American	2013-03-21	GCST001914
+chr15    78606590	78606591	5E-6	rs55676755-C	Post bronchodilator FEV1 in COPD	5439;821	European;African American or Afro-Caribbean	2015-12-03	GCST003263
+chr2    111192964	111192965	9E-9	rs11123406-T	Type 2 diabetes	13532;20298;149821;28567;2479;50981	South Asian;European;NR;South Asian;European;East Asian	2017-09-04	GCST004894
+chr15    27950999	27951000	9E-11	rs76930569-T	Iris color (a* coordinate)	377	East Asian	2017-11-02	GCST005093
+chr3    128212497	128212498	3E-6	rs2999090-A	Post bronchodilator FEV1/FVC ratio	10094;3260;178	European;African American or Afro-Caribbean;NR	2015-12-03	GCST003264
+chr13    64371042	64371043	3E-7	rs9598783-?	Rheumatoid arthritis	3000;2105	European;European	2010-12-14	GCST000917
+chr2    624034	624035	6E-35	rs6711012-C	Obesity	204498;133637	European;European	2013-04-07	GCST001953
+chr10    16702524	16702525	6E-6	rs11254160-A	Obesity-related traits	815	Hispanic or Latin American	2012-12-04	GCST001762
+chr13    110390962	110390963	8E-8	rs55940034-G	Myocardial infarction	2908;3615;23156;754;9396;126630	African American or Afro-Caribbean;Hispanic or Latin American;South Asian;Greater Middle Eastern (Middle Eastern, North African or Persian);East Asian;European	2015-09-07	GCST003117
+chr12    92855755	92855756	4E-6	rs140957346-?	Western dietary pattern	141	NR	2017-06-23	GCST004640
+chr15    78500097	78500098	8E-8	rs7174348-A	Post bronchodilator FEV1	10094;3260;178	European;African American or Afro-Caribbean;NR	2015-12-03	GCST003262
+chr19    18402784	18402785	4E-7	rs1985157-T	Itch intensity from mosquito bite	84724	European	2017-04-01	GCST004861
+chr5    81060251	81060252	6E-6	rs190585232-C	Response to paliperidone in schizophrenia (CGI-S score)	1390	European	2016-11-11	GCST004039
+chr2    231939445	231939446	1E-9	rs2580821-C	Waist circumference adjusted for BMI in active individuals	2334;5072;115058;3163;1773;26887	South Asian;African American or Afro-Caribbean;European;African American or Afro-Caribbean;East Asian;European	2017-04-27	GCST004564
+chr1    118321979	118321980	3E-7	rs7536458-T	Waist circumference adjusted for BMI in non-smokers	2720;139141;129288;10602;7711;3787;1526	African American or Afro-Caribbean;European;European;African American or Afro-Caribbean;South Asian;Hispanic or Latin American;East Asian	2017-04-26	GCST004504
+chr4    123145793	123145794	5E-6	rs303084-A	Waist-to-hip ratio adjusted for body mass index	142762;461;67326;8609;1650;2791	European;African unspecified;European;African American or Afro-Caribbean;Asian unspecified;South Asian	2015-02-12	GCST002782
+chr8    5068943	5068944	8E-6	rs1454292-T	Hair morphology	20985	European	2009-11-04	GCST000519
+chr2    212200740	212200741	3E-6	rs6725041-T	QT interval (ambient particulate matter interaction)	14889;5707;1562	European;African American or Afro-Caribbean;Hispanic or Latin American	2017-06-08	GCST004642
+chr3    160753967	160753968	4E-7	rs146844429-G	Post bronchodilator FEV1/FVC ratio	10094;3260;178	European;African American or Afro-Caribbean;NR	2015-12-03	GCST003264
+chr10    127245046	127245047	9E-6	rs11819364-C	Social communication problems	5628	European	2014-02-24	GCST002367
+chr12    6276561	6276562	4E-10	rs10849432-T	Colorectal cancer	21096;32599	East Asian;East Asian	2016-03-08	GCST003799
+chr14    28663671	28663672	2E-6	rs1956388-A	Ulcerative colitis	3462	European	2010-11-01	GCST000853
+chr1    72371807	72371808	2E-7	rs11209951-T	Body mass index in physically active individuals	26887;5072;115827;3163;1773;2334	European;African American or Afro-Caribbean;European;African American or Afro-Caribbean;East Asian;South Asian	2017-04-27	GCST004559
+chr2    33154196	33154197	1E-8	rs6715793-T	Waist circumference adjusted for body mass index	142762;461;67326;8609;1650;2791	European;African unspecified;European;African American or Afro-Caribbean;Asian unspecified;South Asian	2015-02-12	GCST004063
+chr2    143425433	143425434	4E-12	rs10200533-A	Intelligence (multi-trait analysis)	120934;127548	European;NR	2018-01-11	GCST005316
+chr3    168143620	168143621	4E-7	rs111577701-C	Epilepsy	23453;3273;1264;3501;3362	European;African American or Afro-Caribbean;African American or Afro-Caribbean, European;NR, European;East Asian	2014-07-30	GCST002547
+chr1    60008735	60008736	1E-6	rs148672699-?	Alcoholic chronic pancreatitis	7999	European	2017-07-28	GCST004860
+chr9    99472041	99472042	5E-6	rs649057-?	Dental caries	920	European	2012-10-11	GCST001713
+chr4    6429357	6429358	7E-7	rs11942139-?	Peripheral arterial disease (traffic-related air pollution interaction)	1623;554	European;African American or Afro-Caribbean	2016-04-15	GCST004482
+chr10    22089029	22089030	7E-7	rs72810761-?	3-hydroxy-1-methylpropylmercapturic acid levels in smokers	361;329;440;452;702	African American or Afro-Caribbean;Oceanian;European;Hispanic or Latin American;East Asian	2015-06-08	GCST002957
+chr1    22371954	22371955	5E-16	rs7524102-A	Bone mineral density (hip)	5861;7925	European;European	2008-04-29	GCST000181
+chr1    10226118	10226119	3E-14	rs17396340-A	Waist circumference adjusted for BMI in non-smokers	2720;139141;129288;10602;7711;3787;1526	African American or Afro-Caribbean;European;European;African American or Afro-Caribbean;South Asian;Hispanic or Latin American;East Asian	2017-04-26	GCST004504
+chr6    94712900	94712901	1E-7	rs4145130-A	Methotrexate phramacokinetics (acute lymphoblastic leukemia)	315;206;73;41;5	European;NR;African American or Afro-Caribbean;Other;Asian unspecified	2009-11-09	GCST000523
+chr18    60183864	60183865	2E-8	rs17782313-T	Height	36227;57699	East Asian;East Asian	2014-11-26	GCST002702
+chr9    115006400	115006401	9E-6	rs4979489-?	Colorectal cancer	5272	European	2017-10-09	GCST005149
+chr1    62987118	62987119	2E-6	rs6696619-?	Response to cyclophosphamide in systemic lupus erythematosus with lupus nephritis	109	East Asian	2016-03-15	GCST003445
+chr6    165152406	165152407	2E-7	rs2675724-A	Asthma (sex interaction)	3606;3015;2428	European;African American or Afro-Caribbean;Hispanic or Latin American	2014-05-13	GCST002445
+chr1    169165889	169165890	2E-12	rs16861990-C	Venous thromboembolism	2962;2825	European, Other;NR	2012-06-05	GCST001557
+chr16    73679784	73679785	2E-7	rs764255-T	Word reading	6649	European	2013-06-05	GCST002060
+chr19    54196103	54196104	3E-6	rs148442614-T	Facial morphology (factor 1, breadth of lateral portion of upper face)	2187	European	2017-04-25	GCST004328
+chr2    217029040	217029041	2E-8	rs12998806-G	Breast cancer (estrogen-receptor positive)	723;5945;4032	Sub-Saharan African;African American or Afro-Caribbean;African American or Afro-Caribbean	2016-09-04	GCST003781
+chr4    145953076	145953077	4E-9	rs56935123-AT	Prostate-specific antigen levels	28503;2716;2518;1585;11796	European;Hispanic or Latin American;East Asian;African American or Afro-Caribbean;European	2017-01-31	GCST004093
+chr4    38624295	38624296	5E-6	rs11270836-?	Mumps	85380	European	2017-09-19	GCST005003
+chr7    89065756	89065757	6E-6	rs10236237-T	IgG glycosylation	2247	European	2013-01-31	GCST001848
+chr10    6131730	6131731	4E-10	rs7924005-?	Soluble interleukin-2 receptor subunit alpha	2964;683;4464	European;African American or Afro-Caribbean;European	2015-08-20	GCST003088
+chr12    56350492	56350493	2E-12	rs11575234-?	Inflammatory skin disease	18190	European	2015-01-08	GCST002740
+chr6    118486684	118486685	5E-6	rs25422-?	Renal cell carcinoma	2410;12277	European;European	2011-10-18	GCST001283
+chr6    32421871	32421872	7E-22	rs3135363-?	Hepatitis B vaccine response	1683;1931	Asian unspecified;Asian unspecified	2011-07-15	GCST001162
+chr17    70457204	70457205	1E-7	rs8066985-A	Waist-to-hip ratio adjusted for body mass index	142762;461;67326;8609;1650;2791	European;African unspecified;European;African American or Afro-Caribbean;Asian unspecified;South Asian	2015-02-12	GCST002782
+chr8    55878685	55878686	3E-10	rs2271400-T	Sum neutrophil eosinophil counts	170384	European	2016-11-17	GCST004613
+chr4    122628544	122628545	1E-11	rs17005934-G	Primary biliary cholangitis	3034;5158	East Asian;East Asian	2017-04-20	GCST004302
+chr6    166976754	166976755	4E-6	rs444210-A	Lung adenocarcinoma	66756	European	2017-06-12	GCST004744
+chr7    100483115	100483116	1E-7	rs7808970-G	QT interval	71061;33316	European;European	2014-06-22	GCST002500
+chr16    88296907	88296908	4E-8	rs12448211-A	Central corneal thickness	3584;931	Hispanic or Latin American;Hispanic or Latin American	2016-11-15	GCST003856
+chr5    58888234	58888235	3E-8	rs10472076-C	Breast cancer	22627;87170	European;European	2013-04-01	GCST001937
+chr8    127375606	127375607	6E-7	rs1562430-T	Breast cancer	8556;24799	European;European	2010-05-09	GCST000678
+chr19    32865985	32865986	3E-15	rs12460876-C	Chronic kidney disease	67093;22982	European;European	2010-04-11	GCST000649
+chr2    54115818	54115819	9E-7	54342955-A	Cannabis dependence symptom count	8050	European	2017-11-07	GCST005128
+chr5    1279675	1279676	2E-35	rs10069690-T	Breast cancer (estrogen-receptor negative)	72261;49801	European;European	2017-10-23	GCST005076
+chr7    19765857	19765858	4E-6	rs6977660-?	Thyroid stimulating hormone	883	NR	2007-09-19	GCST000100
+chr3    172667903	172667904	8E-6	rs11712263-A	Obesity-related traits	815	Hispanic or Latin American	2012-12-04	GCST001762
+chr11    69464343	69464344	8E-6	rs11607976-T	Hip circumference	142762;461;67326;8609;1650;2791	European;African unspecified;European;African American or Afro-Caribbean;Asian unspecified;South Asian	2015-02-12	GCST004066
+chr2    31254972	31254973	2E-225	rs655029-A	Platelet distribution width	164433	European	2016-11-17	GCST004616
+chr6    43790159	43790160	1E-29	rs998584-A	Waist-to-hip ratio adjusted for body mass index	142762;461;67326;8609;1650;2791	European;African unspecified;European;African American or Afro-Caribbean;Asian unspecified;South Asian	2015-02-12	GCST002782
+chr12    30661250	30661251	9E-13	rs142754383-?	Initial pursuit acceleration in psychotic disorders	224;367	African unspecified;European	2017-10-24	GCST005026
+chr12    110188208	110188209	9E-6	rs141135753-?	Childhood ear infection	121810	European	2017-09-19	GCST005013
+chr9    125516460	125516461	1E-15	rs10739663-G	Resting heart rate	2478;1734;684;127919;1436;130795	Asian unspecified;African unspecified;Other;European;NR;European	2016-10-31	GCST003818
+chr11    88959905	88959906	3E-10	rs604551-T	Neuroticism	329821;122867	European;European	2017-12-18	GCST005232
+chr1    219467338	219467339	3E-27	rs2820436-C	Waist-to-hip ratio adjusted for body mass index	6573;142227;3975;1773;37487;7713	African American or Afro-Caribbean;European;African American or Afro-Caribbean;East Asian;European;South Asian	2017-04-27	GCST004576
+chr13    74061451	74061452	3E-10	rs1324913-G	Menarche (age at onset)	182413	European	2014-07-23	GCST002541
+chr12    81983187	81983188	5E-8	rs139770682-C	Height	19965	European	2017-03-07	GCST004212
+chr2    218810344	218810345	1E-12	rs6709815-T	Reticulocyte count	170641	European	2016-11-17	GCST004622
+chr6    27104763	27104764	1E-6	rs55834529-?	Urinary tract infection frequency	68478	European	2017-09-19	GCST005012
+chr12    54034227	54034228	3E-12	rs2071449-A	Waist-to-hip ratio adjusted for BMI (adjusted for smoking behaviour)	3181;164513;163276;13206;8678;4708;1793	African American or Afro-Caribbean;European;European;African American or Afro-Caribbean;South Asian;Hispanic or Latin American;East Asian	2017-04-26	GCST004505
+chr7    6446436	6446437	2E-8	rs7797644-T	Coronary artery disease	547261	NR	2017-12-06	GCST005195
+chr12    23071319	23071320	5E-7	rs77934287-?	Coronary artery calcified atherosclerotic plaque (90 or 130 HU threshold) in type 2 diabetes	691;205	African American or Afro-Caribbean;African American or Afro-Caribbean	2017-12-08	GCST005175
+chr13    26336975	26336976	2E-8	rs17083838-A	Sporadic pituitary adenoma	3559;6162	East Asian;East Asian	2015-06-01	GCST002940
+chr20    49459375	49459376	6E-6	rs579113-?	Colonoscopy-negative controls vs population controls	4294	European	2017-10-09	GCST005147
+chr4    182519494	182519495	7E-9	rs12374220-T	Plasma renin activity levels	5275	European	2014-12-04	GCST002714
+chr5    33946466	33946467	1E-13	rs35407-G	Cutaneous squamous cell carcinoma	287137;12343	European;European	2016-07-18	GCST003655
+chr9    17687751	17687752	2E-7	rs16935877-A	Pursuit maintenance gain	300;549	African unspecified;European	2017-10-24	GCST005024
+chr6    396321	396322	6E-15	rs12203592-?	Progressive supranuclear palsy	329;4027;4611;45	Other;European;European;NR	2011-06-19	GCST001116
+chr6    151627231	151627232	2E-15	rs2046210-A	Breast cancer	3027;7502;3057	East Asian;East Asian;European	2009-02-15	GCST000343
+chr11    128511079	128511080	6E-6	rs11221332-?	Ulcerative colitis	45975	European, NR	2017-01-09	GCST004133
+chr5    111203694	111203695	8E-7	rs1370967-A	Periodontitis (PAL4Q3)	2969	European	2013-08-14	GCST002136
+chr9    7177284	7177285	4E-7	rs2026714-G	Schizophrenia	1097;150064	Other;NR	2015-07-21	GCST003048
+chr6    160353454	160353455	2E-12	rs487152-A	Body mass index	158284;15146;322154	East Asian;East Asian;European	2017-09-11	GCST004904
+chrX    154536002	154536003	1E-14	rs1050828-A	Red blood cell traits	1904;411	African American or Afro-Caribbean;African American or Afro-Caribbean	2013-05-20	GCST002027
+chr20    48914749	48914750	3E-6	rs6012558-A	Waist circumference adjusted for BMI in non-smokers	2720;139141;129288;10602;7711;3787;1526	African American or Afro-Caribbean;European;European;African American or Afro-Caribbean;South Asian;Hispanic or Latin American;East Asian	2017-04-26	GCST004504
+chr15    58435126	58435127	2E-35	rs261332-?	Age-related diseases, mortality and associated endophenotypes	9618;19796	European;European	2016-11-03	GCST004045
+chr2    207012741	207012742	4E-6	rs1453160-A	Subcutaneous adipose tissue	10557	European	2012-05-10	GCST001521
+chr3    121581881	121581882	9E-7	rs13096657-C	Postprandial triglyceride response to high fat diet meal	872;843	European;European	2015-07-03	GCST003014
+chr5    153229059	153229060	1E-9	rs2973155-C	Schizophrenia	1097;150064	Other;NR	2015-07-21	GCST003048
+chr19    18707093	18707094	6E-9	rs10423674-A	Menarche (age at onset)	14731;87802	European;European	2010-11-21	GCST000880
+chr11    61804006	61804007	2E-15	rs174550-T	Fasting blood glucose	76558;46186	European;European	2010-01-17	GCST000568
+chr8    99992792	99992793	2E-15	rs141115006-C	Basal cell carcinoma	287197;17044	European;European	2016-08-19	GCST003726
+chr22    28684743	28684744	2E-37	rs62235681-G	Breast cancer	139274;14068;89677	European;East Asian;European	2017-10-23	GCST004988
+chr16    10948337	10948338	5E-8	rs12931878-?	Gut microbiota (beta diversity)	1812;371	European;European	2016-10-10	GCST003876
+chr1    199007363	199007364	4E-13	rs12239179-T	High light scatter reticulocyte count	170761	European	2016-11-17	GCST004611
+chr3    128597592	128597593	6E-153	rs4328821-G	Eosinophil percentage of granulocytes	170536	European	2016-11-17	GCST004617
+chr1    118954531	118954532	8E-9	rs12143789-C	Waist-to-hip ratio adjusted for body mass index	142762;461;67326;8609;1650;2791	European;African unspecified;European;African American or Afro-Caribbean;Asian unspecified;South Asian	2015-02-12	GCST002782
+chr4    99150767	99150768	1E-10	rs17028615	Alcohol dependence	5131;4629;1746;801	European;African American or Afro-Caribbean;European;African American or Afro-Caribbean	2014-01-01	GCST004711
+chr11    129698007	129698008	1E-6	rs141697342-G	Night sleep phenotypes	941	European	2016-04-29	GCST003542
+chr12    10018128	10018129	5E-6	rs11053548-A	Systolic blood pressure in sickle cell anemia	1617	African American or Afro-Caribbean	2013-09-13	GCST002187
+chr6    32730008	32730009	6E-8	rs2859113-C	IgG glycosylation	2247	European	2013-01-31	GCST001848
+chr13    18737101	18737102	3E-24	rs9552416-T	Fasting blood insulin (BMI interaction)	33823;51750	European;European	2012-05-13	GCST001526
+chr16    86070536	86070537	3E-7	rs8050326-A	Major depressive disorder	1610	European	2013-07-15	GCST002095
+chr12    112379979	112379980	1E-8	rs11066280-T	Triglycerides	8344;14739	East Asian;East Asian	2015-11-18	GCST003217
+chr4    154568456	154568457	2E-53	rs6054-T	Fibrinogen levels	120246	European	2015-11-10	GCST003194
+chr2    160314943	160314944	4E-8	rs7593730-?	Type 2 diabetes	5643;84605	European;European	2010-04-23	GCST000665
+chr1    209875474	209875475	9E-19	rs2064163-C	Nonsyndromic cleft lip with cleft palate	6084;5888	East Asian;East Asian	2017-02-24	GCST004166
+chr3    157010821	157010822	4E-6	rs7616559-G	Carotid artery intima media thickness (sex interaction)	931;153;257	Hispanic or Latin American;European;African American or Afro-Caribbean	2015-04-16	GCST002856
+chr16    85939534	85939535	8E-93	rs11641153-G	Monocyte percentage of white cells	170494	European	2016-11-17	GCST004609
+chr12    54292096	54292097	2E-18	rs35979828-T	Mean corpuscular volume	172433	European	2016-11-17	GCST004602
+chr6    71772755	71772756	4E-6	rs10455248-?	Cognitive performance	813;167;7;74	European;East Asian;Hispanic or Latin American;South Asian	2010-02-03	GCST000579
+chr16    88298034	88298035	2E-49	rs9938149-A	Corneal structure	2542;1883;13057;2538	South East Asian;East Asian;European;South Asian	2013-01-06	GCST001806
+chr12    112379979	112379980	8E-22	rs11066280-A	Metabolite levels	12545;30395	East Asian;East Asian	2011-09-11	GCST001233
+chr5    76426908	76426909	2E-13	rs763102039-GGTGTGTGTGTGT	Platelet distribution width	164433	European	2016-11-17	GCST004616
+chr10    112738717	112738718	4E-18	rs7086803-A	Lung cancer	10054;4012	East Asian;East Asian	2012-11-11	GCST001740
+chr5    173168305	173168306	8E-18	rs29784-T	Infantile hypertrophic pyloric stenosis	1435;3372;2546	Other;European;European	2013-08-21	GCST002145
+chr7    129716366	129716367	2E-6	rs9641855-G	Obesity-related traits	815	Hispanic or Latin American	2012-12-04	GCST001762
+chr18    49632720	49632721	5E-10	rs7240405-A	HDL cholesterol	4274;15873	European;European	2008-10-01	GCST000240
+chr2    176172583	176172584	3E-15	rs711830-A	Epithelial ovarian cancer	85426	European	2017-03-27	GCST004462
+chr15    94146424	94146425	6E-6	rs2388436-G	Hoarding	3304	European	2010-12-28	GCST000932
+chr3    151862085	151862086	3E-6	rs6798928-?	Immunoglobulin A	1520;1228	European;European	2010-08-08	GCST000763
+chr1    170159467	170159468	2E-6	rs495524-T	Methotrexate phramacokinetics (acute lymphoblastic leukemia)	315;206;73;41;5	European;NR;African American or Afro-Caribbean;Other;Asian unspecified	2009-11-09	GCST000523
+chr2    88089019	88089020	2E-6	rs2919856-T	IgG glycosylation	2247	European	2013-01-31	GCST001848
+chr15    78447129	78447130	1E-7	rs2915695-T	Post bronchodilator FEV1	10094;3260;178	European;African American or Afro-Caribbean;NR	2015-12-03	GCST003262
+chr2    42955614	42955615	3E-7	rs151256649-?	Cough in response to angiotensin-converting enzyme inhibitor drugs	123;1;1345	European;Greater Middle Eastern (Middle Eastern, North African or Persian);European, NR	2017-01-13	GCST004049
+chr14    70423423	70423424	1E-6	rs12586722-A	Plasma estrone levels in resected estrogen-receptor positive breast cancer	707;52;15	European;African American or Afro-Caribbean;Asian unspecified	2017-04-20	GCST004362
+chr20    44436388	44436389	1E-17	rs6017342-?	Inflammatory bowel disease	59957	NR, European	2017-01-09	GCST004131
+chr12    104551215	104551216	2E-6	rs191454456-G	Stem cell growth factor beta levels	3682	European	2016-12-13	GCST004428
+chr4    144542415	144542416	8E-14	rs6835650-T	Post bronchodilator FEV1	10094;3260;178	European;African American or Afro-Caribbean;NR	2015-12-03	GCST003262
+chr2    110993295	110993296	7E-20	rs2062225-T	Monocyte count	170721	European	2016-11-17	GCST004625
+chr20    8897634	8897635	6E-7	rs67702392-C	Daytime sleep phenotypes	874	European	2016-04-29	GCST003518
+chr11    102823737	102823738	9E-7	rs611705-T	Post bronchodilator FEV1/FVC ratio in COPD	5439;821	European;African American or Afro-Caribbean	2015-12-03	GCST003265
+chr2    108326747	108326748	2E-8	rs17770672-A	Gut microbiota (functional units)	984;530	European;European	2016-10-03	GCST003854
+chr16    5379576	5379577	4E-6	rs476605-?	Colorectal cancer	5908	European	2017-10-09	GCST005150
+chr12    54323725	54323726	2E-152	rs60822569-TTTCTC	Mean platelet volume	164454	European	2016-11-17	GCST004599
+chr3    32920559	32920560	7E-7	rs11919880-?	Psychosis proneness (revised social anhedonia scale)	4025	European	2017-05-19	GCST004686
+chr12    54292096	54292097	3E-9	rs35979828-T	Monocyte count	170721	European	2016-11-17	GCST004625
+chr15    49443100	49443101	3E-13	rs4338740-C	Thyroid volume	3620;1290	European;European	2011-05-13	GCST001069
+chr13    32398489	32398490	2E-13	rs11571833-T	Breast cancer (estrogen-receptor negative)	72261;49801	European;European	2017-10-23	GCST005076
+chr14    46985783	46985784	3E-7	rs11627056-A	Obesity-related traits	815	Hispanic or Latin American	2012-12-04	GCST001762
+chr6    26092913	26092914	5E-28	rs1800562-G	Glycated hemoglobin levels	88355;7564;18472;7572;2366;33238;1302	European;African American or Afro-Caribbean;East Asian;South Asian;East Asian;European;South Asian	2017-09-12	GCST004903
+chr2    70905884	70905885	2E-7	rs3771395-G	Corneal astigmatism	22100	European	2013-01-15	GCST001819
+chr18    60217517	60217518	3E-8	rs12970134-A	Type 2 diabetes	69033;18817;20019;2583;77138	European;East Asian;South Asian;Hispanic or Latin American;European	2014-02-09	GCST002352
+chr19    40768808	40768809	1E-69	rs2607426-?	Blood protein levels	997;338	European;South Asian, Greater Middle Eastern (Middle Eastern, North African or Persian), NR	2017-02-27	GCST004365
+chr3    43774449	43774450	6E-7	rs191867523-G	Macrophage inflammatory protein 1b levels	8243	European	2016-12-13	GCST004433
+chrX    119433739	119433740	1E-7	rs5910578-C	Paget's disease	3440;3145	European;European	2011-05-29	GCST001086
+chr19    17108295	17108296	4E-9	rs7246865-A	Reticulocyte fraction of red cells	170690	European	2016-11-17	GCST004619
+chr2    21009323	21009324	4E-17	rs693-G	LDL cholesterol	17797	European	2008-12-07	GCST000282
+chr4    47371654	47371655	3E-8	rs148121703-C	Moderate or severe diarrhoea in darapladib-treated cardiovascular disease (time to event)	212	European	2017-07-28	GCST004967
+chr19    33817305	33817306	1E-8	rs29943-C	Body mass index in physically active individuals	26887;5072;115827;3163;1773;2334	European;African American or Afro-Caribbean;European;African American or Afro-Caribbean;East Asian;South Asian	2017-04-27	GCST004559
+chr7    4127027	4127028	7E-6	rs654384-A	Positive affect	180281	European	2016-04-18	GCST003768
+chr11    123524538	123524539	3E-14	rs4525246-C	B-cell malignancies (chronic lymphocytic leukemia, Hodgkin lymphoma or multiple myeloma) (pleiotropy)	14421	European	2017-01-23	GCST004099
+chr6    118332041	118332042	2E-17	rs12210810-C	QT interval	15842;13602	European;NR	2009-03-22	GCST000364
+chr18    49464790	49464791	3E-7	rs8099594-A	Height	13665;16482	European;European	2008-04-06	GCST000174
+chr10    122406099	122406100	2E-6	rs6585827-G	Height	19633	East Asian	2010-02-26	GCST000611
+chr6    145367202	145367203	6E-6	rs13215785-G	Interleukin-17 levels	7760	European	2016-12-13	GCST004442
+chr10    129467281	129467282	4E-31	rs16906252-?	MGMT methylation in smokers	1163;289;141	European;European;Hispanic or Latin American	2015-07-16	GCST003031
+chr10    59708831	59708832	6E-10	rs1171616-T	Acylcarnitine levels	7478;1182	European;European	2015-06-12	GCST002961
+chr7    75618011	75618012	1E-12	rs1186222-T	Basophil percentage of white cells	171996	European	2016-11-17	GCST004631
+chr4    116928293	116928294	3E-6	rs2389339-G	IgG glycosylation	2247	European	2013-01-31	GCST001848
+chr8    129683891	129683892	2E-13	rs6993442-C	Myeloid white cell count	169219	European	2016-11-17	GCST004626
+chr13    78806681	78806682	5E-6	rs2184180-G	IgG glycosylation	2247	European	2013-01-31	GCST001848
+chr19    44744370	44744371	3E-51	rs4803750-?	Lipid metabolism phenotypes	17296;2000;2700	European;European;NR	2009-11-20	GCST000533
+chr8    41772929	41772930	2E-86	rs4737010-A	Reticulocyte fraction of red cells	170690	European	2016-11-17	GCST004619
+chr5    150879305	150879306	3E-16	rs11747270-G	Crohn's disease	9541;8151	European;European	2008-06-29	GCST000207
+chr7    4469958	4469959	1E-6	rs141480664-G	Cognitive decline rate in late mild cognitive impairment	472;47	European;NR	2015-08-07	GCST003075
+chr19    40847202	40847203	6E-8	rs56113850-T	Caffeine metabolism (plasma 1,7-dimethylxanthine (paraxanthine) level)	833;5353	European;European	2016-10-03	GCST003847
+chr1    21511262	21511263	9E-6	rs16825455-T	Adverse response to chemotherapy (neutropenia/leucopenia) (all platinum-based drugs)	1171	East Asian	2013-05-04	GCST001998
+chr9    133278724	133278725	3E-8	rs579459-?	Coronary artery disease or large artery stroke	100321	NR	2013-11-21	GCST002290
+chr6    32588824	32588825	1E-9	rs28724212-A	Autism spectrum disorder or schizophrenia	13574;2380	European;NR	2017-05-22	GCST004521
+chr10    103086421	103086422	1E-17	rs11191548-C	Systolic blood pressure	150134;87359;140886	European;European;European, NR	2017-07-24	GCST004776
+chr1    56439852	56439853	3E-16	rs1999537-A	Neutrophil count	170702	European	2016-11-17	GCST004629
+chr3    134484505	134484506	2E-7	rs6772896-T	Waist circumference adjusted for BMI in non-smokers	2720;139141;129288;10602;7711;3787;1526	African American or Afro-Caribbean;European;European;African American or Afro-Caribbean;South Asian;Hispanic or Latin American;East Asian	2017-04-26	GCST004504
+chr3    85836927	85836928	3E-9	rs12495178-C	Body mass index	158284;15146;322154	East Asian;East Asian;European	2017-09-11	GCST004904
+chr3    12447843	12447844	6E-7	rs17819328-?	Waist-to-hip ratio adjusted for BMI (joint analysis for main effect and physical activity interaction)	37487;142227;3975;1773;7713;6573	European;European;African American or Afro-Caribbean;East Asian;South Asian;African American or Afro-Caribbean	2017-04-27	GCST004567
+chr6    43340625	43340626	7E-7	rs1563788-T	Pulse pressure	150134;87359;140886	European;European;European, NR	2017-07-24	GCST004775
+chr4    7045375	7045376	7E-10	rs11931598-T	Neutrophil count	170702	European	2016-11-17	GCST004629
+chr5    52787392	52787393	2E-70	rs115421711-G	Immature fraction of reticulocytes	170548	European	2016-11-17	GCST004628
+chr22    50190508	50190509	2E-59	rs75107793-A	Platelet count	166066	European	2016-11-17	GCST004603
+chr16    85980635	85980636	3E-11	rs16940202-?	Inflammatory bowel disease	59957	NR, European	2017-01-09	GCST004131
+chr19    5587529	5587530	7E-6	rs113123495-C	Obsessive-compulsive symptoms	6931	NR	2016-02-09	GCST003434
+chr9    133262254	133262255	1E-30	rs8176693-T	Serum lipase activity	3966;1444	European;European	2014-07-15	GCST002530
+chr5    27611324	27611325	3E-8	rs12054895-T	Major depressive disorder	2256	European	2013-02-01	GCST001850
+chr1    67240275	67240276	3E-10	rs11209026-?	Ulcerative colitis	7778;7139	European;European	2009-11-15	GCST000527
+chr5    132435113	132435114	1E-7	rs2188962-?	Crohn's disease	4099;1531	European;European	2010-06-22	GCST000705
+chr7    75840133	75840134	2E-30	rs6467885-C	Neutrophil percentage of granulocytes	170672	European	2016-11-17	GCST004623
+chr1    192618733	192618734	4E-6	rs10921219-?	Survival in colon cancer	334	European	2015-03-19	GCST002822
+chr19    47635083	47635084	5E-6	rs191404864-A	Late-onset Alzheimer's disease	5609	African American or Afro-Caribbean	2016-10-20	GCST003815
+chr2    55869757	55869758	2E-19	rs3791679-A	Waist circumference adjusted for body mass index	44609;24146;229290	East Asian;East Asian;NR	2016-01-20	GCST003336
+chr2    210675783	210675784	1E-15	rs7422339-A	Chronic kidney disease	67093;22982	European;European	2010-04-11	GCST000649
+chr13    80029047	80029048	5E-6	rs17072133-T	Itch intensity from mosquito bite adjusted by bite size	84724	European	2017-04-01	GCST004862
+chr17    61419916	61419917	6E-12	rs757608-A	Waist circumference adjusted for body mass index	6573;7713;146049;3975;1773;37487	African American or Afro-Caribbean;South Asian;European;African American or Afro-Caribbean;East Asian;European	2017-04-27	GCST004562
+chr2    24024948	24024949	5E-27	rs7561675-G	Immature fraction of reticulocytes	170548	European	2016-11-17	GCST004628

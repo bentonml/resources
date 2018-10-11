@@ -1,0 +1,82 @@
+# mary lauren benton | 2015
+# .aliases
+
+###
+#  listing files 
+###
+alias ls="command ls --color=auto"  # always use color output
+alias ll='ls -lh'                        # long format
+alias la="ls -lha"                       # all files
+alias lg="ls --group-directories-first"  # dirs first
+alias lsd='ls -l | grep "^d"'            # dirs only 
+
+
+###
+#  navigation 
+###
+alias ..='cd ..'     # move up one dir
+alias up='cd ..;ls'  # move up and list contents
+
+alias cdd='cd /dors/capra_lab'
+alias dors='cd /dors/capra_lab'
+alias cdml='cd /dors/capra_lab/users/bentonml'
+alias cddat='cd /dors/capra_lab/data_clean'
+
+
+###
+#  creating directories
+###
+alias datedir='mkdir `date +%F`'  # today's date
+
+
+###
+#  removing files
+###
+alias rm="trash.pl"  # safe remove
+alias rrm="/bin/rm"  # override safe remove
+
+
+###
+#  conda & envrionments
+###
+alias envs='conda env list'     # list envs
+alias act='source activate'     # activate env
+alias dact='source deactivate'  # deactivate env
+
+
+###
+#  git
+###
+alias gstat='git status'  # get status of current repo (dir)
+
+
+###
+#  slurm
+###
+# credit for this section to david rinker & mike sively | 2016
+alias myq="squeue --format='%.18i %.8j %.10u %.10a %.8T %.10M %.15l %.5D %.5C %.10m %R' --user \"$USER\""
+alias grpq="squeue --format='%.18i %.8j %.10u %.10a %.8T %.10M %.15l %.5D %.5C %.10m %R' --account capra_lab"
+alias grpcpu='squeue --format=%C --account capra_lab -h | paste -sd+ | bc'
+
+alias sacct="sacct --allusers --format=User,JobID,JobName,account,Timelimit,elapsed,TotalCPU,CPUTime,ReqMem,MaxRss,MaxVMSize,n"
+alias mycd="sacct --user \"$USER\" -s cd"  # successful
+alias myrn="sacct --user \"$USER\" -s r"   # running
+alias myto="sacct --user \"$USER\" -s to"  # timeout
+
+alias load='sreport cluster utilization'
+alias jobhog='sreport user top'
+alias usage='sreport cluster AccountUtilizationByUser'
+
+alias myquota='accre_storage'
+alias mydu='du -h --max-depth=1'
+
+
+###
+#  etc
+###
+alias vi=vim
+alias tarup='tar -zcvf'  # tarup archive.tar.gz dir/
+alias untar='tar -zxvf'  # untar archive.tar.gz
+
+alias refresh='source ~/.bash_profile'
+

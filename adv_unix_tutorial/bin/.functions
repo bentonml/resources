@@ -1,0 +1,7 @@
+# mary lauren benton | 2015
+# .functions
+
+function mcd() {
+    mkdir -p "$1" && cd "$1"
+}
+

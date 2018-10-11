@@ -1,0 +1,2 @@
+../data/E073_18_core_K27ac_mnemonics.bed
+../data/gwasCatalog_2018-04-01_hg38_n-200_fixed.bed

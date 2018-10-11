@@ -1,0 +1,35 @@
+#!/bin/bash
+# mary lauren benton | 2016
+# 
+# print summary statistics for input bed file(s)
+
+# good reference for if: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
+# the $# refers to number of command line parameters
+if [ "$#" -lt 1 ]; then
+    echo "usage: summary_stats_bed [ files ]"
+    exit 1
+fi
+
+# print out the number of paramters
+echo "number of parameters: $#" 
+
+# print header -- we can use printf to get finer control over output
+printf "%10s %9s %9s %8s\n" "bp" "elements" "mean" "median"
+
+for file in "$@"  # $@ refers to all of the commmand line arguments; look at individuals with $1, etc.
+do
+    # the `` or $() will run the command inside and replace with the output
+    # can save the output of bash commands to variables for use later
+    num_el=`wc -l < ${file}`
+    num_bp=`awk '{s += $3 - $2} END {print s}' ${file}`
+
+    # echo the command to `bc` since bash doesn't have native arithmetic capability
+    mean=`echo "scale=3; $num_bp / $num_el" | bc -l`
+
+    # using array notation in awk; save each sorted value to array, then find the middle
+    median=`awk '{print $3-$2}' ${file} | sort -n | awk 'BEGIN{i=0} {a[i++]=$1} END{print a[int(i/2)]}'`
+
+    # print results using printf for formatting
+    printf "%10d %9s %9s %8s\n" $num_bp $num_el $mean $median
+done
+
