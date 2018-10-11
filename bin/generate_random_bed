@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Mary Lauren Benton, 2017
+# mary lauren benton | 2017
 #
 # Generate randomly shuffled BED file from input BED; exclude ENCODE blacklist by default.
 
