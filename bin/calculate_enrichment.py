@@ -4,6 +4,7 @@
 #   created | 2017
 #   updated | 2018.10.09
 #           | 2018.10.11
+#           | 2018.10.29
 #
 #   depends on:
 #       BEDtools v2.23.0-20
@@ -27,7 +28,6 @@ from pybedtools import BedTool
 arg_parser = argparse.ArgumentParser(description="Calculate enrichment between bed files.")
 
 arg_parser.add_argument("region_file_1", help='bed file 1 (shuffled)')
-
 arg_parser.add_argument("region_file_2", help='bed file 2 (not shuffled)')
 
 arg_parser.add_argument("-i", "--iters", type=int, default=100,
@@ -65,7 +65,7 @@ else:
 ###
 #   functions
 ###
-def loadConstants(species):
+def loadConstants(species):  # note chrom.sizes not used in current implementation | 2018.10.29
     return {'hg19': ("/dors/capra_lab/users/bentonml/data/hg19_blacklist_gap.bed", "/dors/capra_lab/data_clean/dna/human/hg19/hg19_trim.chrom.sizes"),
             'hg38': ("/dors/capra_lab/users/bentonml/data/hg38_blacklist_gap.bed", "/dors/capra_lab/data_clean/dna/human/hg38/hg38_trim.chrom.sizes"),
             'mm10': ("/dors/capra_lab/users/bentonml/data/mm10_blacklist_gap.bed", "/dors/capra_lab/data_clean/dna/mouse/mm10/mm10_trim.chrom.sizes")
@@ -86,7 +86,7 @@ def calculateObserved(annotation, test, elementwise):
 
 
 def calculateExpected(annotation, test, elementwise, species, iters):
-    BLACKLIST, CHROM_SZ = loadConstants(species)
+    BLACKLIST, CHROM_SZ = loadConstants(species)  # note CHROM_SZ not used
     exp_sum = 0
 
     rand_file = annotation.shuffle(genome='hg19', excl=BLACKLIST, chrom=True, noOverlapping=True)
@@ -122,11 +122,11 @@ def main(argv):
     print('Observed\tExpected\tStdDev\tFoldChange\tp-value')
 
     # run initial intersection and save
-    obs_sum = calculateObserved(ANNOTATION_FILENAME, TEST_FILENAME, ELEMENT)
+    obs_sum = calculateObserved(BedTool(ANNOTATION_FILENAME), BedTool(TEST_FILENAME), ELEMENT)
 
     # create pool and run simulations in parallel
     pool = Pool(num_threads)
-    partial_calcExp = partial(calculateExpected, ANNOTATION_FILENAME, TEST_FILENAME, ELEMENT, SPECIES)
+    partial_calcExp = partial(calculateExpected, BedTool(ANNOTATION_FILENAME), BedTool(TEST_FILENAME), ELEMENT, SPECIES)
     exp_sum_list = pool.map(partial_calcExp, [i for i in range(ITERATIONS)])
 
     # wait for results to finish before calculating p-value
