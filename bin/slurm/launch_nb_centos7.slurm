@@ -7,6 +7,7 @@
 #SBATCH --output=notebook.out
 
 # when job launches, open tunnel from your local machine
+# then point your browser to localhost:8888
 
 PORT=7777
 echo To open a tunnel from local machine, 
@@ -17,6 +18,8 @@ echo
 
 module load Anaconda3       # load python 
 source activate sample_env  # load virtual environment
+
+unset XDG_RUNTIME_DIR
 
 jt -t solarizedd -f anonymous -fs 12 -nfs 14 -ofs 12 -cellw 90%  # optionally set theme
 
