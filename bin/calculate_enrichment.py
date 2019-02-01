@@ -5,11 +5,12 @@
 #   updated | 2018.10.09
 #           | 2018.10.11
 #           | 2018.10.29
+#           | 2019.02.01
 #
 #   depends on:
-#       BEDtools v2.23.0-20
-#       /dors/capra_lab/data/dna/[species]_trim.chrom.sizes
-#       /dors/capra_lab/users/bentonml/data/[species]_blacklist_gap.bed
+#       BEDtools v2.23.0-20 via pybedtools
+#       /dors/capra_lab/data/dna/[species]/[species]/[species]_trim.chrom.sizes
+#       /dors/capra_lab/users/bentonml/data/dna/[species]/[species]_blacklist_gap.bed
 ###
 
 import os
@@ -66,9 +67,9 @@ else:
 #   functions
 ###
 def loadConstants(species):  # note chrom.sizes not used in current implementation | 2018.10.29
-    return {'hg19': ("/dors/capra_lab/users/bentonml/data/hg19_blacklist_gap.bed", "/dors/capra_lab/data_clean/dna/human/hg19/hg19_trim.chrom.sizes"),
-            'hg38': ("/dors/capra_lab/users/bentonml/data/hg38_blacklist_gap.bed", "/dors/capra_lab/data_clean/dna/human/hg38/hg38_trim.chrom.sizes"),
-            'mm10': ("/dors/capra_lab/users/bentonml/data/mm10_blacklist_gap.bed", "/dors/capra_lab/data_clean/dna/mouse/mm10/mm10_trim.chrom.sizes")
+    return {'hg19': ("/dors/capra_lab/users/bentonml/data/dna/hg19/hg19_blacklist_gap.bed", "/dors/capra_lab/data/dna/human/hg19/hg19_trim.chrom.sizes"),
+            'hg38': ("/dors/capra_lab/users/bentonml/data/dna/hg38/hg38_blacklist_gap.bed", "/dors/capra_lab/data/dna/human/hg38/hg38_trim.chrom.sizes"),
+            'mm10': ("/dors/capra_lab/users/bentonml/data/dna/mm10/mm10_blacklist_gap.bed", "/dors/capra_lab/data/dna/mouse/mm10/mm10_trim.chrom.sizes")
             }[species]
 
 
