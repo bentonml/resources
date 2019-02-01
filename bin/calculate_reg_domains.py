@@ -89,7 +89,7 @@ def basal_plus_extension(genes, species, up_extension, dn_extension, max_extensi
 
 
 def gene_window(genes, species, extension):
-    return genes.flank(genome=species, b=extension)
+    return genes.slop(genome=species, b=extension)
 
 
 ###
