@@ -38,8 +38,8 @@ DECIMAL = args.decimal
 ###
 def main(argv):
     # create bedtools objects
-    a = pybedtools.BedTool(A)
-    b = pybedtools.BedTool(B)
+    a = pybedtools.BedTool(A).sort()
+    b = pybedtools.BedTool(B).sort()
 
     # calculate jaccard similarity
     result = a.jaccard(b)
