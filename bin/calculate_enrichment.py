@@ -8,6 +8,7 @@
 #           | 2019.02.01
 #           | 2019.04.08
 #           | 2019.06.10
+#           | 2019.11.05
 #
 #   depends on:
 #       BEDtools v2.23.0-20 via pybedtools
@@ -25,6 +26,7 @@ import numpy as np
 from functools import partial
 from multiprocessing import Pool
 from pybedtools import BedTool
+from pybedtools.helpers import BEDToolsError, cleanup, get_tempdir, set_tempdir
 
 
 ###
@@ -70,6 +72,9 @@ if args.num_threads:
 else:
     num_threads = int(os.getenv('SLURM_CPUS_PER_TASK', 1))
 
+# if running on slurm, set tmp to runtime dir
+set_tempdir(os.getenv('ACCRE_RUNTIME_DIR', get_tempdir()))
+
 
 ###
 #   functions
@@ -103,18 +108,21 @@ def calculateExpected(annotation, test, elementwise, hapblock, species, iters):
     BLACKLIST, CHROM_SZ = loadConstants(species)  # note CHROM_SZ not used
     exp_sum = 0
 
-    rand_file = annotation.shuffle(genome=species, excl=BLACKLIST, chrom=True, noOverlapping=True)
+    try:
+        rand_file = annotation.shuffle(genome=species, excl=BLACKLIST, chrom=True, noOverlapping=True)
 
-    if elementwise:
-        exp_sum = rand_file.intersect(test, u=True).count()
-    else:
-        exp_intersect = rand_file.intersect(test, wo=True)
-
-        if hapblock:
-            exp_sum = len(set(x[-2] for x in exp_intersect))
+        if elementwise:
+            exp_sum = rand_file.intersect(test, u=True).count()
         else:
-            for line in exp_intersect:
-                exp_sum += int(line[-1])
+            exp_intersect = rand_file.intersect(test, wo=True)
+
+            if hapblock:
+                exp_sum = len(set(x[-2] for x in exp_intersect))
+            else:
+                for line in exp_intersect:
+                    exp_sum += int(line[-1])
+    except BEDToolsError:
+        exp_sum = -999
 
     return exp_sum
 
@@ -151,12 +159,25 @@ def main(argv):
     pool.close()
     pool.join()
 
+    # remove iterations that throw bedtools exceptions
+    final_exp_sum_list = [x for x in exp_sum_list if x >= 0]
+    exceptions = exp_sum_list.count(-999)
+
     # calculate empirical p value
-    print(calculateEmpiricalP(obs_sum, exp_sum_list))
+    if exceptions / ITERATIONS <= .1:
+        print(calculateEmpiricalP(obs_sum, final_exp_sum_list))
+        print(f'iterations not completed: {exceptions}', file=sys.stderr)
+    else:
+        print(f'iterations not completed: {exceptions}\nresulted in nonzero exit status', file=sys.stderr)
+        cleanup()
+        sys.exit(1)
 
     if COUNT_FILENAME is not None:
         with open(COUNT_FILENAME, "w") as count_file:
             count_file.write('{}\n{}\n'.format(obs_sum, '\t'.join(map(str, exp_sum_list))))
+
+    # clean up any pybedtools tmp files
+    cleanup()
 
 
 if __name__ == "__main__":
