@@ -83,7 +83,7 @@ def loadConstants(species):  # note chrom.sizes not used in current implementati
     return {'hg19': ("/dors/capra_lab/users/bentonml/data/dna/hg19/hg19_blacklist_gap.bed", "/dors/capra_lab/data/dna/human/hg19/hg19_trim.chrom.sizes"),
             'hg38': ("/dors/capra_lab/users/bentonml/data/dna/hg38/hg38_blacklist_gap.bed", "/dors/capra_lab/data/dna/human/hg38/hg38_trim.chrom.sizes"),
             'mm10': ("/dors/capra_lab/users/bentonml/data/dna/mm10/mm10_blacklist_gap.bed", "/dors/capra_lab/data/dna/mouse/mm10/mm10_trim.chrom.sizes"),
-            'dm3' : ("/dors/capra_lab/data/dna/fly/dm3-blacklist.bed", "/dors/capra_lab/data/dna/fly/dm3_chrom-sizes.bed")
+            'dm3' : ("/dors/capra_lab/data/dna/fly/dm3-blacklist.bed", "/dors/capra_lab/data/dna/fly/dm3.chrom.sizes")
             }[species]
 
 
@@ -133,7 +133,12 @@ def calculateEmpiricalP(obs, exp_sum_list):
     dist_from_mu = [exp - mu for exp in exp_sum_list]
     p_sum = sum(1 for exp_dist in dist_from_mu if abs(exp_dist) >= abs(obs - mu))
 
-    fold_change = (obs + 1.0) / (mu + 1.0)
+    # add pseudocount only to avoid divide by 0 errors
+    if mu == 0:
+        fold_change = (obs + 1.0) / (mu + 1.0)
+    else:
+        fold_change = obs / mu
+
     p_val = (p_sum + 1.0) / (len(exp_sum_list) + 1.0)
 
     return "%d\t%.3f\t%.3f\t%.3f\t%.3f" % (obs, mu, sigma, fold_change, p_val)
