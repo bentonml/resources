@@ -9,6 +9,7 @@
 #           | 2019.04.08
 #           | 2019.06.10
 #           | 2019.11.05
+#           | 2021.02.24
 #
 #   depends on:
 #       BEDtools v2.23.0-20 via pybedtools
@@ -43,6 +44,9 @@ arg_parser.add_argument("-i", "--iters", type=int, default=100,
 arg_parser.add_argument("-s", "--species", type=str, default='hg19', choices=['hg19', 'hg38', 'mm10', 'dm3'],
                         help='species and assembly; default=hg19')
 
+arg_parser.add_argument("-b", "--blacklist", type=str, default=None,
+                        help='custom blacklist file; default=None')
+
 arg_parser.add_argument("-n", "--num_threads", type=int,
                         help='number of threads; default=SLURM_CPUS_PER_TASK or 1')
 
@@ -65,6 +69,7 @@ ITERATIONS = args.iters
 SPECIES = args.species
 ELEMENT = args.elem_wise
 HAPBLOCK= args.by_hap_block
+CUSTOM_BLIST = args.blacklist
 
 # calculate the number of threads
 if args.num_threads:
@@ -79,11 +84,13 @@ set_tempdir(os.getenv('ACCRE_RUNTIME_DIR', get_tempdir()))
 ###
 #   functions
 ###
-def loadConstants(species):  # note chrom.sizes not used in current implementation | 2018.10.29
-    return {'hg19': ("/dors/capra_lab/users/bentonml/data/dna/hg19/hg19_blacklist_gap.bed", "/dors/capra_lab/data/dna/human/hg19/hg19_trim.chrom.sizes"),
-            'hg38': ("/dors/capra_lab/users/bentonml/data/dna/hg38/hg38_blacklist_gap.bed", "/dors/capra_lab/data/dna/human/hg38/hg38_trim.chrom.sizes"),
-            'mm10': ("/dors/capra_lab/users/bentonml/data/dna/mm10/mm10_blacklist_gap.bed", "/dors/capra_lab/data/dna/mouse/mm10/mm10_trim.chrom.sizes"),
-            'dm3' : ("/dors/capra_lab/data/dna/fly/dm3-blacklist.bed", "/dors/capra_lab/data/dna/fly/dm3.chrom.sizes")
+def loadConstants(species, custom=''):
+    if custom is not None:
+        return custom
+    return {'hg19': "/dors/capra_lab/users/bentonml/data/dna/hg19/hg19_blacklist_gap.bed",
+            'hg38': "/dors/capra_lab/users/bentonml/data/dna/hg38/hg38_blacklist_gap.bed",
+            'mm10': "/dors/capra_lab/users/bentonml/data/dna/mm10/mm10_blacklist_gap.bed",
+            'dm3' : "/dors/capra_lab/data/dna/fly/dm3-blacklist.bed"
             }[species]
 
 
@@ -104,8 +111,8 @@ def calculateObserved(annotation, test, elementwise, hapblock):
     return obs_sum
 
 
-def calculateExpected(annotation, test, elementwise, hapblock, species, iters):
-    BLACKLIST, CHROM_SZ = loadConstants(species)  # note CHROM_SZ not used
+def calculateExpected(annotation, test, elementwise, hapblock, species, custom, iters):
+    BLACKLIST = loadConstants(species, custom)
     exp_sum = 0
 
     try:
@@ -157,7 +164,7 @@ def main(argv):
 
     # create pool and run simulations in parallel
     pool = Pool(num_threads)
-    partial_calcExp = partial(calculateExpected, BedTool(ANNOTATION_FILENAME), BedTool(TEST_FILENAME), ELEMENT, HAPBLOCK, SPECIES)
+    partial_calcExp = partial(calculateExpected, BedTool(ANNOTATION_FILENAME), BedTool(TEST_FILENAME), ELEMENT, HAPBLOCK, SPECIES, CUSTOM_BLIST)
     exp_sum_list = pool.map(partial_calcExp, [i for i in range(ITERATIONS)])
 
     # wait for results to finish before calculating p-value
