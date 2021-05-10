@@ -2,13 +2,10 @@
 ###
 #   name    | mary lauren benton
 #   created | 2017
+#   updated | 2021
 #
 #   depends on:
 #       BEDtools v2.23.0-20 via pybedtools
-#       /dors/capra_lab/data/dna/[species]/[species]/[species]_trim.chrom.sizes
-#       /dors/capra_lab/data/dna/[species]/[species]_chrom-sizes.bed
-#       /dors/capra_lab/users/bentonml/data/dna/[species]/[species]_blacklist_gap.bed
-#       /dors/capra_lab/data/dna/[species]/[species]-blacklist.bed
 ###
 
 import os
