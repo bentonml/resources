@@ -10,13 +10,14 @@
 #           | 2019.06.10
 #           | 2019.11.05
 #           | 2021.02.24
+#           | 2021.52.26
 #
 #   depends on:
 #       BEDtools v2.23.0-20 via pybedtools
-#       /dors/capra_lab/data/dna/[species]/[species]/[species]_trim.chrom.sizes
-#       /dors/capra_lab/data/dna/[species]/[species]_chrom-sizes.bed
 #       /dors/capra_lab/users/bentonml/data/dna/[species]/[species]_blacklist_gap.bed
 #       /dors/capra_lab/data/dna/[species]/[species]-blacklist.bed
+#
+#       ACCRE: ml Anaconda3 GCC MySQL-client
 ###
 
 import os
@@ -41,7 +42,7 @@ arg_parser.add_argument("region_file_2", help='bed file 2 (not shuffled)')
 arg_parser.add_argument("-i", "--iters", type=int, default=100,
                         help='number of simulation iterations; default=100')
 
-arg_parser.add_argument("-s", "--species", type=str, default='hg19', choices=['hg19', 'hg38', 'mm10', 'dm3'],
+arg_parser.add_argument("-s", "--species", type=str, default='hg19', choices=['hg19', 'hg38', 'mm10', 'dm3', 'sacCer3'],
                         help='species and assembly; default=hg19')
 
 arg_parser.add_argument("-b", "--blacklist", type=str, default=None,
