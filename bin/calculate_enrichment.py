@@ -10,7 +10,7 @@
 #           | 2019.06.10
 #           | 2019.11.05
 #           | 2021.02.24
-#           | 2021.52.26
+#           | 2021.05.26
 #
 #   depends on:
 #       BEDtools v2.23.0-20 via pybedtools
@@ -54,6 +54,9 @@ arg_parser.add_argument("-n", "--num_threads", type=int,
 arg_parser.add_argument("--print_counts_to", type=str, default=None,
                         help="print expected counts to file")
 
+arg_parser.add_argument("--stranded", action='store_true', default=False,
+                        help='only count overlaps with matching strand; default=False')
+
 arg_parser.add_argument("--elem_wise", action='store_true', default=False,
                         help='perform element-wise overlaps; default=False')
 
@@ -69,7 +72,8 @@ COUNT_FILENAME = args.print_counts_to
 ITERATIONS = args.iters
 SPECIES = args.species
 ELEMENT = args.elem_wise
-HAPBLOCK= args.by_hap_block
+HAPBLOCK = args.by_hap_block
+STRAND = args.stranded
 CUSTOM_BLIST = args.blacklist
 
 # calculate the number of threads
@@ -95,13 +99,13 @@ def loadConstants(species, custom=''):
             }[species]
 
 
-def calculateObserved(annotation, test, elementwise, hapblock):
+def calculateObserved(annotation, test, elementwise, hapblock, strand):
     obs_sum = 0
 
     if elementwise:
-        obs_sum = annotation.intersect(test, u=True).count()
+        obs_sum = annotation.intersect(test, u=True, s=strand).count()
     else:
-        obs_intersect = annotation.intersect(test, wo=True)
+        obs_intersect = annotation.intersect(test, wo=True, s=strand)
 
         if hapblock:
             obs_sum = len(set(x[-2] for x in obs_intersect))
@@ -112,7 +116,7 @@ def calculateObserved(annotation, test, elementwise, hapblock):
     return obs_sum
 
 
-def calculateExpected(annotation, test, elementwise, hapblock, species, custom, iters):
+def calculateExpected(annotation, test, elementwise, hapblock, species, custom, strand, iters):
     BLACKLIST = loadConstants(species, custom)
     exp_sum = 0
 
@@ -120,9 +124,9 @@ def calculateExpected(annotation, test, elementwise, hapblock, species, custom, 
         rand_file = annotation.shuffle(genome=species, excl=BLACKLIST, chrom=True, noOverlapping=True)
 
         if elementwise:
-            exp_sum = rand_file.intersect(test, u=True).count()
+            exp_sum = rand_file.intersect(test, u=True, s=strand).count()
         else:
-            exp_intersect = rand_file.intersect(test, wo=True)
+            exp_intersect = rand_file.intersect(test, s=strand, wo=True)
 
             if hapblock:
                 exp_sum = len(set(x[-2] for x in exp_intersect))
@@ -161,11 +165,11 @@ def main(argv):
     print('Observed\tExpected\tStdDev\tFoldChange\tp-value')
 
     # run initial intersection and save
-    obs_sum = calculateObserved(BedTool(ANNOTATION_FILENAME), BedTool(TEST_FILENAME), ELEMENT, HAPBLOCK)
+    obs_sum = calculateObserved(BedTool(ANNOTATION_FILENAME), BedTool(TEST_FILENAME), ELEMENT, HAPBLOCK, STRAND)
 
     # create pool and run simulations in parallel
     pool = Pool(num_threads)
-    partial_calcExp = partial(calculateExpected, BedTool(ANNOTATION_FILENAME), BedTool(TEST_FILENAME), ELEMENT, HAPBLOCK, SPECIES, CUSTOM_BLIST)
+    partial_calcExp = partial(calculateExpected, BedTool(ANNOTATION_FILENAME), BedTool(TEST_FILENAME), ELEMENT, HAPBLOCK, SPECIES, CUSTOM_BLIST, STRAND)
     exp_sum_list = pool.map(partial_calcExp, [i for i in range(ITERATIONS)])
 
     # wait for results to finish before calculating p-value
